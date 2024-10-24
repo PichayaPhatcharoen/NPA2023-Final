@@ -104,7 +104,7 @@ postData = {"roomId": roomIdToGetMessages, "text": responseMessage}
 r = requests.post(
     "https://webexapis.com/v1/messages",
     data=json.dumps(postData),
-    headers=<postHTTPHeaders>,
+    headers= postHTTPHeaders,
 )
 if not r.status_code == 200:
     raise Exception(
