@@ -92,21 +92,21 @@ postHTTPHeaders = HTTPHeaders = {"Authorization": accessToken, "Content-Type": "
         
 # 6. Complete the code to post the message to the Webex Teams room.
         
-        # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
-        postHTTPHeaders = HTTPHeaders = {"Authorization": accessToken, "Content-Type": "application/json"}
+    # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
+    postHTTPHeaders = HTTPHeaders = {"Authorization": accessToken, "Content-Type": "application/json"}
 
-        # The Webex Teams POST JSON data
-        # - "roomId" is is ID of the selected room
-        # - "text": is the responseMessage assembled above
-        postData = {"roomId": roomIdToGetMessages, "text": responseMessage}
+    # The Webex Teams POST JSON data
+    # - "roomId" is is ID of the selected room
+    # - "text": is the responseMessage assembled above
+    postData = {"roomId": roomIdToGetMessages, "text": responseMessage}
 
-        # Post the call to the Webex Teams message API.
-        r = requests.post(
-            "https://webexapis.com/v1/messages",
-            data=json.dumps(postData),
-            headers=<postHTTPHeaders>,
+    # Post the call to the Webex Teams message API.
+    r = requests.post(
+        "https://webexapis.com/v1/messages",
+        data=json.dumps(postData),
+        headers=<postHTTPHeaders>,
+    )
+    if not r.status_code == 200:
+        raise Exception(
+            "Incorrect reply from Webex Teams API. Status code: {}".format(r.status_code)
         )
-        if not r.status_code == 200:
-            raise Exception(
-                "Incorrect reply from Webex Teams API. Status code: {}".format(r.status_code)
-            )
